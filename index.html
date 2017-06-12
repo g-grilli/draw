@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Draw App</title>
+		<style>
+			h1 {
+				margin: 0;
+				padding: 0;
+			}
+			canvas {
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+	<h1>Draw App</h1>
+	<canvas width="400" height="400"></canvas>
+	  <script>
+		var canvas = document.querySelector('canvas');
+		var ctx = canvas.getContext('2d');
+		//RECTANGLE
+		/*ctx.fillStyle = 'red';
+		ctx.fillRect(50, 50, 100, 200); */
+
+		//CIRCLE
+		/*ctx.beginPath();
+		ctx.fillStyle = 'blue';
+		ctx.ellipse(100, 100, 50, 50, 0, 0, Math.PI * 2);
+		ctx.fill();*/
+
+		//DRAW A LINE
+		/*ctx.strokeStyle = 'red';
+		ctx.lineJoin = 'round';
+		ctx.lineWidth = 5;
+
+
+		ctx.beginPath();
+		ctx.moveTo(100, 100);
+		ctx.lineTo(200, 200);
+		//MAKE TRIANGLE this closes the line.
+		ctx.lineTo(100,200);
+		ctx.closePath();
+		ctx.stroke();*/
+
+		//DRAW 2 rectangles next to each other
+		/*ctx.fillStyle = 'red';
+		ctx.fillRect(50, 50, 100, 200);
+		ctx.fillStyle = 'green';
+		ctx.fillRect(150, 50, 100, 200);*/
+
+		//DRAW 2 rectangles one inside another
+		/*ctx.fillStyle = 'red';
+		ctx.fillRect(75, 50, 100, 200);
+		ctx.fillStyle = 'green';
+		ctx.fillRect(100, 75, 50, 150);*/
+
+		//DRAW 2 circles of different color, one inside another
+		//DRAW a bull's eye like below - Rember need to open and close paths
+		ctx.beginPath();
+		ctx.fillStyle = 'blue';
+		ctx.ellipse(200, 200, 200, 200, 0, 0, Math.PI * 2);
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.fillStyle = 'white';
+		ctx.ellipse(200, 200, 110, 110, 0, 0, Math.PI * 2);
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.fillStyle = 'yellow';
+		ctx.ellipse(200, 200, 100, 100, 0, 0, Math.PI * 2);
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.fillStyle = 'white';
+		ctx.ellipse(200, 200, 60, 60, 0, 0, Math.PI * 2);
+		ctx.fill();
+		ctx.closePath();
+		ctx.beginPath();
+		ctx.fillStyle = 'red';
+		ctx.ellipse(200, 200, 50, 50, 0, 0, Math.PI * 2);
+		ctx.fill();
+
+
+
+
+
+		//Catching Events
+		var mouse_down = false;
+		var current;
+		var past;
+		
+		//DRAWS A LINE FUNCTION
+		function draw (past, current) {
+		  ctx.moveTo(past[0], past[1]);
+		  ctx.quadraticCurveTo(
+		    past[0], past[1],
+		    current[0], current[1]
+		  );
+		  ctx.stroke();
+		  ctx.closePath();
+		}
+
+		canvas.addEventListener('mousedown', function (event) {
+  			mouse_down = true;
+  			console.log('down', event.offsetX, event.offsetY);
+		});
+		canvas.addEventListener('mouseup', function (event) {
+  			mouse_down = false;
+  			console.log('up', event.offsetX, event.offsetY);
+		});
+		canvas.addEventListener('mousemove', function (event) {
+  			if (mouse_down) {
+    			current = [event.offsetX, event.offsetY];
+    			if (past) {
+      				draw(past, current);
+    			}
+    			past = [event.offsetX, event.offsetY];
+  			}
+		});
+
+	  </script>
+	</body>
+</html>
